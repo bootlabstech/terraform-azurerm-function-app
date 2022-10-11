@@ -14,12 +14,14 @@ variable "storage_name" {
   type        = string
 }
 variable "account_tier" {
-  description = " Defines the Tier to use for this storage account."
+  description = "Defines the Tier to use for this storage account."
   type        = string
+  default     = "Standard"
 }
 variable "account_replication_type" {
   description = "Defines the type of replication to use for this storage account."
   type        = string
+  default     = "LRS"
 }
 
 # APP SERVICE PLAN
