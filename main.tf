@@ -1,9 +1,9 @@
 resource "azurerm_storage_account" "storage_account" {
-  name                     = var.storage_name
-  resource_group_name      = var.resource_group_name
-  location                 = var.location
-  account_tier             = var.account_tier
-  account_replication_type = var.account_replication_type
+  name                          = var.storage_name
+  resource_group_name           = var.resource_group_name
+  location                      = var.location
+  account_tier                  = var.account_tier
+  account_replication_type      = var.account_replication_type
   public_network_access_enabled = false
 
   lifecycle {
@@ -19,7 +19,7 @@ resource "azurerm_app_service_plan" "app_service_plan" {
   location            = var.location
   kind                = var.kind
   reserved            = var.reserved
-  
+
   sku {
     tier = var.tier
     size = var.size
@@ -47,7 +47,6 @@ resource "azurerm_function_app" "function_app" {
 
   site_config {
     java_version = var.java_version
-    linux_fx_version = var.linux_fx_version
   }
 
   lifecycle {

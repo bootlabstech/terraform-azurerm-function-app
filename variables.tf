@@ -37,14 +37,14 @@ variable "size" {
   type        = string
 }
 variable "kind" {
-  type = string
+  type        = string
   description = "The kind of the App Service Plan to create. Possible values are Windows (also available as App), Linux, elastic (for Premium Consumption) and FunctionApp (for a Consumption Plan). Defaults to Windows."
-  default = "Linux"
+  default     = "Linux"
 }
 variable "reserved" {
-  type = bool
+  type        = bool
   description = "Is this App Service Plan Reserved. Defaults to false."
-  default = true
+  default     = true
 }
 
 # FUNCTION APP
@@ -58,12 +58,12 @@ variable "functions_worker_runtime" {
   type        = string
 }
 variable "os_type" {
-  type = string
+  type        = string
   description = "possible values are This value will be linux for Linux derivatives, or an empty string for Windows (default). When set to linux you must also set azurerm_app_service_plan arguments as and reserved = true"
-  default = "linux"
+  default     = "linux"
 }
 variable "java_version" {
-  type = string
+  type        = string
   description = "Java version hosted by the function app in Azure. Possible values are 1.8, 11."
-  default = "1.8"
+  default     = "1.8"
 }
