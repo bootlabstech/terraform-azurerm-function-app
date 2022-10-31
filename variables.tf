@@ -67,5 +67,5 @@ variable "os_type" {
 variable "java_version" {
   type        = string
   description = "Java version hosted by the function app in Azure. Possible values are 1.8, 11."
-  default     = "1.8"
+  default     = "11"
 }
