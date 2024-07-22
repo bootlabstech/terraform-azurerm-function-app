@@ -69,3 +69,7 @@ variable "java_version" {
   description = "Java version hosted by the function app in Azure. Possible values are 1.8, 11."
   default     = "11"
 }
+variable "use_32_bit_worker_process" {
+  type        = bool
+  default = false
+}

@@ -47,6 +47,7 @@ resource "azurerm_function_app" "function_app" {
 
   site_config {
     java_version = var.java_version
+    use_32_bit_worker_process = var.use_32_bit_worker_process
   }
 
   lifecycle {
