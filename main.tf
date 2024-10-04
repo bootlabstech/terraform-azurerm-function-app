@@ -48,7 +48,7 @@ resource "azurerm_linux_function_app" "example" {
     vnet_route_all_enabled = var.vnet_route_all_enabled
   }
 
-  depends_on = [ azurerm_service_plan.app_service_plan ]
+  depends_on = [ azurerm_app_service_plan.app_service_plan ]
 
   
 }
