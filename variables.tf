@@ -78,6 +78,6 @@ variable "vnet_route_all_enabled" {
 
 }
 variable "virtual_network_subnet_id" {
-  type = virtual_network_subnet_id
+  type = string
   
 }
