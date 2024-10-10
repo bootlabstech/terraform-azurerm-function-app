@@ -40,7 +40,7 @@ resource "azurerm_linux_function_app" "example" {
   storage_account_name       = azurerm_storage_account.storage_account.name
   storage_account_access_key = azurerm_storage_account.storage_account.primary_access_key
   service_plan_id            = azurerm_app_service_plan.app_service_plan.id
-  
+  virtual_network_subnet_id = var.virtual_network_subnet_id
   site_config {
     ftps_state             = var.ftps_state
     app_command_line       = var.app_command_line
