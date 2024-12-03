@@ -55,29 +55,20 @@ variable "name" {
   description = "the name of the Function App."
   type        = string
 }
-
-
-variable "ftps_state" {
-  type    = string
-  default = "FtpsOnly"
-
+variable "functions_worker_runtime" {
+  description = "A map of key-value pairs for App Settings and custom values.possible values are dotnet, dotnet-isolated, java, node, powershell, python"
+  type        = string
 }
-variable "app_command_line" {
-  type    = string
-  default = ""
-
+variable "os_type" {
+  type        = string
+  description = "possible values are This value will be linux for Linux derivatives, or an empty string for Windows (default). When set to linux you must also set azurerm_app_service_plan arguments as and reserved = true"
+  default     = "linux"
 }
-variable "app_scale_limit" {
-  type    = number
-  default = 1
-
+variable "java_version" {
+  type        = string
+  description = "Java version hosted by the function app in Azure. Possible values are 1.8, 11."
 }
-variable "vnet_route_all_enabled" {
-  type    = bool
-  default = false
-
-}
-variable "virtual_network_subnet_id" {
-  type = string
-  
+variable "dotnet_version" {
+  description = "The .NET version for the Azure Function App (e.g., '6.0', '7.0')."
+  type        = string
 }
