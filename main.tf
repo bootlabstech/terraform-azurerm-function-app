@@ -32,28 +32,23 @@ resource "azurerm_app_service_plan" "app_service_plan" {
   }
 }
 
-resource "azurerm_function_app" "function_app" {
-  name                       = var.name
-  resource_group_name        = var.resource_group_name
-  location                   = var.location
-  app_service_plan_id        = azurerm_app_service_plan.app_service_plan.id
+resource "azurerm_linux_function_app" "example" {
+  name                = var.name
+  resource_group_name = var.resource_group_name
+  location            = var.location
+
   storage_account_name       = azurerm_storage_account.storage_account.name
   storage_account_access_key = azurerm_storage_account.storage_account.primary_access_key
-  os_type                    = var.os_type
-
-  app_settings = {
-    functions_worker_runtime = var.functions_worker_runtime
-  }
-
+  service_plan_id            = azurerm_app_service_plan.app_service_plan.id
+  
   site_config {
-    # Conditional settings for Java and .NET
-    java_version   = var.functions_worker_runtime == "java" ? var.java_version : null
-    dotnet_framework_version = var.functions_worker_runtime == "dotnet" ? var.dotnet_version : null
+    ftps_state             = var.ftps_state
+    app_command_line       = var.app_command_line
+    app_scale_limit        = var.app_scale_limit
+    vnet_route_all_enabled = var.vnet_route_all_enabled
   }
 
-  lifecycle {
-    ignore_changes = [
-      tags,
-    ]
-  }
+  depends_on = [ azurerm_app_service_plan.app_service_plan ]
+
+  
 }
