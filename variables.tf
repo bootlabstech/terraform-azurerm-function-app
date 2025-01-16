@@ -77,3 +77,7 @@ variable "vnet_route_all_enabled" {
   default = false
 
 }
+variable "public_network_access_enabled" {
+  type = bool
+  default = true
+}
