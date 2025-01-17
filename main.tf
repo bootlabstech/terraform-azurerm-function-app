@@ -36,6 +36,7 @@ resource "azurerm_linux_function_app" "example" {
   name                = var.name
   resource_group_name = var.resource_group_name
   location            = var.location
+  virtual_network_subnet_id = var.virtual_network_subnet_id
 
   storage_account_name       = azurerm_storage_account.storage_account.name
   storage_account_access_key = azurerm_storage_account.storage_account.primary_access_key
