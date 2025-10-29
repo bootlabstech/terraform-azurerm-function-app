@@ -85,3 +85,15 @@ variable "virtual_network_subnet_id" {
   type = string
   
 }
+
+variable "runtime_stack" {
+  description = "Runtime stack for the Function App (e.g., python, node, dotnet, java, powershell)"
+  type        = string
+  default     = "python" #node
+}
+
+variable "runtime_version" {
+  description = "Runtime version for the selected stack"
+  type        = string
+  default     = "3.11" #18
+}

@@ -47,6 +47,22 @@ resource "azurerm_linux_function_app" "example" {
     app_command_line       = var.app_command_line
     app_scale_limit        = var.app_scale_limit
     vnet_route_all_enabled = var.vnet_route_all_enabled
+
+    dynamic "application_stack" {
+      for_each = (
+       var.runtime_stack == "python" || 
+       var.runtime_stack == "node" || 
+       var.runtime_stack == "dotnet" || 
+       var.runtime_stack == "java"
+       ) ? [1] : []
+
+      content {
+        python_version            = var.runtime_stack == "python" ? var.runtime_version : null
+        node_version              = var.runtime_stack == "node" ? var.runtime_version : null
+        dotnet_version            = var.runtime_stack == "dotnet" ? var.runtime_version : null
+        java_version              = var.runtime_stack == "java" ? var.runtime_version : null
+      }
+    }
   }
 
   depends_on = [ azurerm_app_service_plan.app_service_plan ]
