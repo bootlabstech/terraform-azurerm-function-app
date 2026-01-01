@@ -26,28 +26,28 @@ variable "account_replication_type" {
 
 # APP SERVICE PLAN
 
-# variable "plan_name" {
-#   description = "Specifies the name of the App Service Plan component."
-#   type        = string
-# }
-# variable "tier" {
-#   description = "Specifies the plan's pricing tier."
-#   type        = string
-# }
-# variable "size" {
-#   description = "Specifies the plan's instance size."
-#   type        = string
-# }
-# variable "kind" {
-#   type        = string
-#   description = "The kind of the App Service Plan to create. Possible values are Windows (also available as App), Linux, elastic (for Premium Consumption) and FunctionApp (for a Consumption Plan). Defaults to Windows."
-#   default     = "Linux"
-# }
-# variable "reserved" {
-#   type        = bool
-#   description = "Is this App Service Plan Reserved. Defaults to false."
-#   default     = true
-# }
+variable "plan_name" {
+  description = "Specifies the name of the App Service Plan component."
+  type        = string
+}
+variable "tier" {
+  description = "Specifies the plan's pricing tier."
+  type        = string
+}
+variable "size" {
+  description = "Specifies the plan's instance size."
+  type        = string
+}
+variable "kind" {
+  type        = string
+  description = "The kind of the App Service Plan to create. Possible values are Windows (also available as App), Linux, elastic (for Premium Consumption) and FunctionApp (for a Consumption Plan). Defaults to Windows."
+  default     = "Linux"
+}
+variable "reserved" {
+  type        = bool
+  description = "Is this App Service Plan Reserved. Defaults to false."
+  default     = true
+}
 
 # FUNCTION APP
 
@@ -81,14 +81,9 @@ variable "public_network_access_enabled" {
   type = bool
   default = true
 }
-# variable "virtual_network_subnet_id" {
-#   type = string
-  
-# }
-
-variable "app_service_plan_id" {
+variable "virtual_network_subnet_id" {
   type = string
-  description = "provide the app service plan id"
+  
 }
 
 variable "runtime_stack" {
