@@ -33,15 +33,32 @@ resource "azurerm_app_service_plan" "app_service_plan" {
 }
 
 resource "azurerm_linux_function_app" "example" {
-  name                = var.name
-  resource_group_name = var.resource_group_name
-  location            = var.location
+  name                      = var.name
+  resource_group_name       = var.resource_group_name
+  location                  = var.location
   virtual_network_subnet_id = var.virtual_network_subnet_id
+  https_only                = var.https_only
 
   storage_account_name       = azurerm_storage_account.storage_account.name
   storage_account_access_key = azurerm_storage_account.storage_account.primary_access_key
   service_plan_id            = azurerm_app_service_plan.app_service_plan.id
-  
+  lifecycle {
+    ignore_changes = [
+      connection_string,
+      tags,
+      app_settings,
+      sticky_settings,
+      site_config[0].cors,
+      site_config[0].virtual_application,
+      site_config[0].application_stack[0].dotnet_version,
+      site_config[0].application_stack[0].dotnet_core_version,
+      site_config[0].application_stack[0].java_version,
+      site_config[0].application_stack[0].node_version,
+      site_config[0].application_stack[0].php_version,
+      site_config[0].application_stack[0].python
+    ]
+  }
+
   site_config {
     ftps_state             = var.ftps_state
     app_command_line       = var.app_command_line
@@ -50,22 +67,21 @@ resource "azurerm_linux_function_app" "example" {
 
     dynamic "application_stack" {
       for_each = (
-       var.runtime_stack == "python" || 
-       var.runtime_stack == "node" || 
-       var.runtime_stack == "dotnet" || 
-       var.runtime_stack == "java"
-       ) ? [1] : []
+        var.runtime_stack == "python" ||
+        var.runtime_stack == "node" ||
+        var.runtime_stack == "dotnet" ||
+        var.runtime_stack == "java"
+      ) ? [1] : []
 
       content {
-        python_version            = var.runtime_stack == "python" ? var.runtime_version : null
-        node_version              = var.runtime_stack == "node" ? var.runtime_version : null
-        dotnet_version            = var.runtime_stack == "dotnet" ? var.runtime_version : null
-        java_version              = var.runtime_stack == "java" ? var.runtime_version : null
+        python_version = var.runtime_stack == "python" ? var.runtime_version : null
+        node_version   = var.runtime_stack == "node" ? var.runtime_version : null
+        dotnet_version = var.runtime_stack == "dotnet" ? var.runtime_version : null
+        java_version   = var.runtime_stack == "java" ? var.runtime_version : null
       }
     }
   }
 
-  depends_on = [ azurerm_app_service_plan.app_service_plan ]
+  depends_on = [azurerm_app_service_plan.app_service_plan]
 
-  
 }

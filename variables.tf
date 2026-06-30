@@ -78,12 +78,12 @@ variable "vnet_route_all_enabled" {
 
 }
 variable "public_network_access_enabled" {
-  type = bool
+  type    = bool
   default = true
 }
 variable "virtual_network_subnet_id" {
   type = string
-  
+
 }
 
 variable "runtime_stack" {
@@ -96,4 +96,10 @@ variable "runtime_version" {
   description = "Runtime version for the selected stack"
   type        = string
   default     = "3.11" #18
+}
+
+variable "https_only" {
+  description = "https only to enable secure accesss"
+  type        = bool
+  default     = true
 }
