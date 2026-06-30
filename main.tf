@@ -49,13 +49,10 @@ resource "azurerm_linux_function_app" "example" {
       app_settings,
       sticky_settings,
       site_config[0].cors,
-      site_config[0].virtual_application,
       site_config[0].application_stack[0].dotnet_version,
-      site_config[0].application_stack[0].dotnet_core_version,
-      site_config[0].application_stack[0].java_version,
       site_config[0].application_stack[0].node_version,
-      site_config[0].application_stack[0].php_version,
-      site_config[0].application_stack[0].python
+      site_config[0].application_stack[0].python_version,
+      site_config[0].application_stack[0].java_version
     ]
   }
 
